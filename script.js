@@ -41,6 +41,19 @@ let unique = rowArray.filter((value, i) => {
   return rowArray.indexOf(value) === i;
 });
 
+let onesIsland = unique.map(value => {
+  console.log(`value ${value}`);
+  let index = coordinates.indexOf(value);
+  console.log(`index ${index}`);
+  if (index !== -1) {
+    coordinates.slice(index, 1);
+  }
+});
+//координаты в одномерный массив, удалить пары, оставить острова с 1 единицей.
+
+console.log(onesIsland);
+console.log(coordinates);
+
 document.getElementById('result').innerHTML = 'кол. пар: ' + rowArray.length + ', кол. уник.: ' + unique.length;
 
 function numberOfIslands(allCoordinates, adjoinIslands) {
