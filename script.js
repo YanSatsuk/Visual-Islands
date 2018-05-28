@@ -1,17 +1,27 @@
 let n = parseInt(prompt('Enter N (rows)'), 10);
 let m = parseInt(prompt('Enter M (columns)'), 10);
 
-let islandMap = [
-];
-
 let table = document.getElementById('map');
 
-for (let i = 0; i < n; i++) {
+if (isNaN(n) && isNaN(m)) {
+  n = 8;
+  m = 8;
+} else if (isNaN(n)) {
+  n = m;
+} else if (isNaN(m)) {
+  m = n
+}
+
+let islandMap = [];
+let tr;
+let th;
+
+for (let i = 0; i < n; i++) { // create table map
   islandMap[i] = [];
-  let tr = table.appendChild(document.createElement("tr"));
+  tr = table.appendChild(document.createElement("tr"));
   for (let j = 0; j < m; j++) {
     islandMap[i][j] = Math.floor(Math.random() * 2);
-    let th = document.createElement("th");
+    th = document.createElement("th");
     th.setAttribute('id', `${i},${j}`);
     tr.appendChild(th).innerHTML = islandMap[i][j];
   }
@@ -19,7 +29,7 @@ for (let i = 0; i < n; i++) {
 
 let coordinates = [];
 
-for (let i = 0; i < islandMap.length; i++) {
+for (let i = 0; i < islandMap.length; i++) { 
   for (let j = 0; j < islandMap[0].length; j++) {
     if (islandMap[i][j] === 1) {
       coordinates.push([i, j]);
@@ -27,7 +37,26 @@ for (let i = 0; i < islandMap.length; i++) {
   }
 }
 
-let ind = 0;
+// let parts = [];
+
+// for (let i = 0; i < coordinates.length; i++) {
+//   for (let j = 0; j < coordinates.length; j++) {
+//     if (i !== j) {
+//       if (
+//         coordinates[i][0] - coordinates[j][0] === 0 &&
+//         Math.abs(coordinates[i][1] - coordinates[j][1]) === 1
+//       ) {
+//         parts.push([coordinates[i]].concat([coordinates[j]]));
+//       } else if (
+//         Math.abs(coordinates[i][0] - coordinates[j][0] === 1) &&
+//         coordinates[i][1] - coordinates[j][1] === 0
+//       ) {
+//         parts.push([coordinates[i]].concat([coordinates[j]]));
+//       }
+//     }
+//   }
+// }
+
 let ar = [];
 
 coordinates.map(co => {
@@ -212,10 +241,11 @@ if (coordinates.length !== 0) {
   })
 }
 
+
 if (fake2.length !== 0) {
   fake2.map(fa => {
     let col = getRandomColor();
-    fa.map(f => {
+    fa.map((f, i) => {
       document.getElementById(f.toString()).style.backgroundColor = col;
     })
   })
