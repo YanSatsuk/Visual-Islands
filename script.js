@@ -1,5 +1,5 @@
-let n = parseInt(prompt('Enter N (rows)'), 10);
-let m = parseInt(prompt('Enter M (columns)'), 10);
+let n = parseInt(prompt('Enter N'), 10);
+let m = parseInt(prompt('Enter M'), 10);
 
 let table = document.getElementById('map');
 
